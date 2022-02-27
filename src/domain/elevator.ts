@@ -8,7 +8,15 @@ export class Elevator {
   private _door = new Door();
   private _status: Status;
 
-  constructor() {}
+  constructor(
+    building: Building,
+    distanceFloors = 20,
+    serialNumber = "A123456B"
+  ) {
+    this._building = building;
+    this.distanceFloors = distanceFloors;
+    this.serialNumber = serialNumber;
+  }
 
   get serialNumber(): string {
     return this._serialNumber;
