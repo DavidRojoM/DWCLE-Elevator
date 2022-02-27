@@ -76,7 +76,26 @@ export class Elevator {
   }
 
   private closeDoor() {
-    this._door.open = false;
+    this.status = Status.CLOSING;
+    return this._door.setOpen(false).then(() => {
+      this.status = Status.IDLE;
+    });
+  }
+
+  public request(nextFloor: number) {
+    if (this.currentFloor === nextFloor) {
+      return this.door.setOpen(true).then(() => {
+        this.status = Status.IDLE;
+      });
+    }
+
+    if (this.door.isOpen()) {
+      return this.closeDoor()
+        .then(() => this.move(nextFloor))
+        .then(() => this.openDoor());
+    }
+
+    return this.move(nextFloor).then(() => this.openDoor());
   }
 
   private async move(nextFloor: number) {
