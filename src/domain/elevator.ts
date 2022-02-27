@@ -79,9 +79,27 @@ export class Elevator {
     this._door.open = false;
   }
 
-  public request(nextFloor: number) {}
+  private async move(nextFloor: number) {
+    const direction = nextFloor > this.currentFloor ? "up" : "down";
+    const distance =
+      this.distanceFloors * Math.abs(nextFloor - this.currentFloor);
 
-  private move(nextFloor: number) {}
+    this.status = Status.MOVING;
+    const steps: Promise<any>[] = [];
+    for (let i = 1; i <= distance; i++) {
+      steps.push(
+        new Promise((resolve) => {
+          setTimeout(() => {
+            console.log(`Moving ${direction}`);
+            resolve(i);
+          }, i * 100);
+        })
+      );
+    }
+    await Promise.all(steps);
+    this.currentFloor = nextFloor;
+    return;
+  }
 
   public reset() {}
 
