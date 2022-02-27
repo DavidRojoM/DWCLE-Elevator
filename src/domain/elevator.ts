@@ -44,11 +44,14 @@ export class Elevator {
   }
 
   private set distanceFloors(distanceFloors: number) {
+    if (distanceFloors < 10) {
+      throw new Error("Floor Distance incorrect!! It must be greater than 9!!");
+    }
     this._distanceFloors = distanceFloors;
   }
 
   public isOpen(): boolean {
-    return this._door.open;
+    return this.door.isOpen();
   }
 
   public getBuilding() {}
