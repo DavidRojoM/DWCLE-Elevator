@@ -1,5 +1,5 @@
 export class Door {
-  private _open = false;
+  private open = false;
 
   constructor() {}
 
@@ -19,6 +19,7 @@ export class Door {
   }
 
   public toString() {
-    return `The door is ${this._open}`;
+    const state = this.open ? "open" : "closed";
+    return `The door is ${state}`;
   }
 }
