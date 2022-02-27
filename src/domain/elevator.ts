@@ -109,7 +109,9 @@ export class Elevator {
       steps.push(
         new Promise((resolve) => {
           setTimeout(() => {
-            console.log(`Moving ${direction}`);
+            console.log(
+              `Moving ${direction} elevator ${this.serialNumber} on step: ${i}`
+            );
             resolve(i);
           }, i * 100);
         })
