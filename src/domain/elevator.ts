@@ -57,8 +57,8 @@ export class Elevator {
     return this._status;
   }
 
-  private set status(value: Status) {
-    this._status = value;
+  private set status(status: Status) {
+    this._status = status;
   }
 
   private get door(): Door {
@@ -66,7 +66,10 @@ export class Elevator {
   }
 
   private openDoor() {
-    this._door.open = true;
+    this.status = Status.OPENING;
+    return this._door.setOpen(true).then(() => {
+      this.status = Status.IDLE;
+    });
   }
 
   private closeDoor() {
