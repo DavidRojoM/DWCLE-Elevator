@@ -1,6 +1,6 @@
 export enum Status {
-  IDLE,
-  MOVING,
-  OPENING,
-  CLOSING,
+  IDLE = "IDLE",
+  MOVING = "MOVING",
+  OPENING = "OPENING",
+  CLOSING = "CLOSING",
 }
