@@ -24,6 +24,8 @@ export class Building {
   }
 
   public toString(): string {
-    return "";
+    return `
+    Building: ${this.name},
+    Elevators: [${this.elevators.map((elevator) => elevator.serialNumber)}]`;
   }
 }
