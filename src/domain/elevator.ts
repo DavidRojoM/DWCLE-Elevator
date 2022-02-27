@@ -1,12 +1,14 @@
 import { Door } from "./door";
 import { Status } from "./status.enum";
+import { Building } from "./building";
 
 export class Elevator {
-  protected _serialNumber: string = "A123456B";
-  private _currentFloor: number = 0;
-  private _distanceFloors: number = 0;
+  protected _serialNumber!: string;
+  private _currentFloor = 0;
+  private _distanceFloors!: number;
   private _door = new Door();
-  private _status: Status;
+  private _status: Status = Status.IDLE;
+  private readonly _building: Building;
 
   constructor(
     building: Building,
@@ -23,6 +25,9 @@ export class Elevator {
   }
 
   set serialNumber(serialNumber: string) {
+    if (serialNumber.length < 8) {
+      throw new Error("Serial Number incorrect!! It must have 8 characters!!");
+    }
     this._serialNumber = serialNumber;
   }
 
