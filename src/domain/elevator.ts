@@ -127,5 +127,16 @@ export class Elevator {
     });
   }
 
-  public toString() {}
+  public toString(): string {
+    return `
+    [
+    serialNumber: ${this.serialNumber}, 
+    currentFloor: ${this.currentFloor}, 
+    distanceFloors: ${this.distanceFloors}, 
+    door: ${this.door}, 
+    status: ${this.status}, 
+    building: ${this._building}
+    ]
+    `;
+  }
 }
