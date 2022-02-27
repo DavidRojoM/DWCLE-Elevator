@@ -120,7 +120,12 @@ export class Elevator {
     return;
   }
 
-  public reset() {}
+  public reset() {
+    this.currentFloor = this.currentFloor;
+    this.closeDoor().then(() => {
+      console.log("reset");
+    });
+  }
 
   public toString() {}
 }
